@@ -1,6 +1,6 @@
 function selectsort(n){
     for(var i = 0; i < n.length;i++){
-        for(var j = 0; j < i && j < n.length-1; j++){
+        for(var j = n.length; j > i; j--){
             if(n[i] < n[j]){
                 [n[j], n[i]] = [n[i], n[j]]
             }
@@ -8,4 +8,3 @@ function selectsort(n){
     }
     return n
 }
-var b = [5,6,3,2,5,6,3]
