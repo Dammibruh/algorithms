@@ -18,4 +18,4 @@ function quicksort(arr, low, high){
     }
 }
 var arr = [5,6,3,7,0,0,6,5,4,7]
-quicksort(hm, 0, arr.length)
+quicksort(hm, 0, arr.length-1)
