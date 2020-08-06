@@ -6,7 +6,7 @@ public:
     int data;
     Node *next;
 };
-void getNode(Node *node){
+void getTotalNodes(Node *node){
 	int count = 1;
 	Node *cur = node;
 	while(cur->next){
@@ -27,6 +27,6 @@ int main(){
    node.next = &node2;
    node2.next = &node3;
    node3.next = &node4;
-   getNode(&node);
+   getTotalNodes(&node);
    //should print 4
 }
