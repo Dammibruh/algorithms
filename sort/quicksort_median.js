@@ -1,3 +1,4 @@
+//just quicksort with pivot of median make it O(n*log(n)) fast as fuck boi
 function mid(array, low, high){
 	   _mid = Math.floor((low+high)/2)
 	   if(array[high] < array[low]){
