@@ -7,6 +7,10 @@ typedef struct Node {
 };
 struct Node* head;
 
+void set_head(struct Node* newH){
+    head = newH;
+}
+
 struct Node* last_node(){
     struct Node* cur;
     cur = head;
