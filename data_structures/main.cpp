@@ -1,16 +1,37 @@
 #include <iostream>
+#include "Stack.cpp"
 #include "Vector.cpp"
+
+template<typename T>
+void printDs(const T& ds){
+    std::cout << "{ ";
+    for(auto&i : ds){
+        std::cout << i << " ";
+    }
+    std::cout << "}\n";
+}
+
+void vectorMain(){
+    Vector<int> vector({5,9,5,8,4,2,8,0,8});
+    90 >> vector;
+    vector << 100;
+    vector << 30;
+    20 >> vector;
+    vector.popBack();
+    vector.popFront();
+    printDs(vector);
+}
+
+void stackMain(){
+    Stack<int, 50> stack({5,8,5,6});
+    stack.push(50);
+    stack.push(2);
+    stack.pop();
+    printDs(stack);
+}
 
 
 int main(){
-    Vector<int> vec;
-    vec.pushBack(10);
-    vec.pushBack(50);
-    vec.pushBack(5);
-    vec.popBack();
-    vec.popFront();
-    vec.Resize(20);
-    for(auto& i : vec){
-        std::cout << i << " ";
-    }
+    vectorMain();
+    stackMain();
 }
