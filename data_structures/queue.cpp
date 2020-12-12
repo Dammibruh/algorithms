@@ -52,4 +52,3 @@ class Queue {
         return &(this->data[QSize]);
     }
 };
-
