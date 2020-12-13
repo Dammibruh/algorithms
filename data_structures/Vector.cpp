@@ -12,7 +12,7 @@ class Vector {
             for(size_t i = 0; i < m_Size; ++i){
                 temp[i] = std::move(m_Data[i]);
             }
-            ::operator delete(temp);
+            ::operator delete(m_Data);
             m_Data = temp;
         }
     }
@@ -37,17 +37,29 @@ class Vector {
         }
     }
     public:
-    Vector(){}
+    constexpr Vector(){}
     template<size_t N>
-    Vector(const VectorType (&arr)[N]){
-        for(size_t i = 0; i < N - 1;i++){
+    constexpr Vector(const VectorType (&arr)[N]){
+        if(N >= m_Capacity){
+            Realloc(m_Capacity * 1.5);
+        }
+        for(size_t i = 0; i < N - 1; ++i){
             pushBack(arr[i]);
         }
     }
-    Vector(const Vector<VectorType>& vec){
+    template<size_t N>
+    constexpr Vector(const VectorType (&&arr)[N]){
+        if(N >= m_Capacity){
+            Realloc(m_Capacity * 1.5);
+        }
+        for(size_t i = 0; i < N - 1; ++i){
+            pushBack(arr[i]);
+        }
+    }
+    constexpr Vector(const Vector<VectorType>& vec){
         m_Data = (vec.data());
     }
-    Vector(Vector<VectorType>&& vec){
+    constexpr Vector(Vector<VectorType>&& vec){
         m_Data = std::move(vec.data());
     }
     constexpr ~Vector() requires(std::is_destructible<VectorType>::value) {
@@ -59,13 +71,13 @@ class Vector {
 
     void pushBack(const VectorType& element){
         if(m_Size >= m_Capacity)
-            Realloc(m_Capacity * .5);
+            Realloc(m_Capacity * 1.5);
         m_Data[m_Size] = element;
         m_Size++;
     }
     void pushBack(VectorType&& element){
         if(m_Size >= m_Capacity)
-            Realloc(m_Capacity * .5);
+            Realloc(m_Capacity * 1.5);
         m_Data[m_Size] = std::move(element);
         m_Size++;
     }
@@ -77,14 +89,14 @@ class Vector {
     }
     void pushFront(const VectorType& element){
         if(m_Size >= m_Capacity)
-            Realloc(m_Capacity * .5);
+            Realloc(m_Capacity * 1.5);
         _shift_to_right();
         m_Data[0] = element;
         m_Size++;
     }
     void pushFront(VectorType&& element){
         if(m_Size >= m_Capacity)
-            Realloc(m_Capacity * .5);
+            Realloc(m_Capacity * 1.5);
         _shift_to_right();
         m_Data[0] = std::move(element);
         m_Size++;
@@ -98,7 +110,7 @@ class Vector {
     }
     void Resize(size_t _newSize){
         if(_newSize >= m_Capacity && _newSize != m_Size){
-            Realloc(m_Capacity * .5);
+            Realloc(m_Capacity * 1.5);
             m_Size = _newSize;
         } else if(_newSize < m_Capacity && _newSize != m_Size){
             m_Size = _newSize;
