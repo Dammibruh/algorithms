@@ -13,10 +13,6 @@ void printDs(const T& ds){
 
 void vectorMain(){
     Vector<int> vector({5,9,5,8,4,2,8,0,8});
-    90 >> vector;
-    vector << 100;
-    vector << 30;
-    20 >> vector;
     vector.popBack();
     vector.popFront();
     printDs(vector);

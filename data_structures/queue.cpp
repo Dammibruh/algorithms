@@ -8,7 +8,7 @@ class Queue {
     public:
     Queue(){};
     Queue(const Qt (&arr)[Qs]){
-        for(int i = 0; i <= Qs-1; i++){
+        for(size_t i = 0; i <= Qs-1; i++){
             this->enqueue(arr[i]);
         }
     }
@@ -18,7 +18,7 @@ class Queue {
         }
         this->data[0] = nullptr;
         this->QSize--;
-        for(int i = 0; i <= QSize-1; i++){
+        for(size_t i = 0; i <= QSize-1; i++){
             this->data[i] = this->data[i+1];
         }
     }
@@ -52,3 +52,6 @@ class Queue {
         return &(this->data[QSize]);
     }
 };
+int main(){
+    Queue<int, 20> queue({5,9,50,5});
+}

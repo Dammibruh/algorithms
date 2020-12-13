@@ -3,7 +3,7 @@
 
 template<typename StackType, size_t StackSize>
 class Stack{
-    StackType* _Data = nullptr;
+    StackType* _Data = new StackType[StackSize];
     size_t _Size = 0;
     void _shift_to_right(){
         for(size_t i = StackSize; i > 0; i--){
@@ -16,10 +16,9 @@ class Stack{
         }
     }
     public:
-    Stack(){ _Data = new StackType[StackSize]; }
+    Stack(){}
     template<size_t N>
     Stack(const StackType (&arr)[N]) {
-        _Data = new StackType[StackSize];
         for(size_t i = 0; i <= N-1;i++){
             push(std::move(arr[i])); // O(n²) go brrrrrrrrrrr
         }
