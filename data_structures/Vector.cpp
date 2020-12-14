@@ -61,7 +61,7 @@ class Vector {
       Realloc(m_Capacity * 1.5);
     }
     for (size_t i = 0; i < N - 1; ++i) {
-      pushBack(arr[i]);
+      pushBack(std::move(arr[i]));
     }
   }
   Vector(const Vector<VectorType>& vec) { m_Data = (vec.data()); }
