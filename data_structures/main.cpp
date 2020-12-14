@@ -15,7 +15,7 @@ void vectorMain(){
     Vector<int> vector({5,9,5,8,4,2,8,0,8});
     vector.popBack();
     vector.popFront();
-    printDs(vector);
+    std::cout << vector.getData()[0];
 }
 
 void stackMain(){
